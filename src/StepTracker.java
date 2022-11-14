@@ -2,7 +2,7 @@
 public class StepTracker {
 
     int stepTarget = 10000;
-    MonthData[] monthArray;
+    static MonthData[] monthArray;
 
     public StepTracker() {
         monthArray = new MonthData[12];
@@ -21,6 +21,10 @@ public class StepTracker {
                 dayData[j] = 0;
             }
         }
+
+        public void addStepsByDay(int monthNumber, int dayNumber, int stepsValue) {
+            monthArray[monthNumber].dayData[dayNumber] = stepsValue;
+        }
     }
 
 
@@ -32,11 +36,4 @@ public class StepTracker {
             System.out.println("Попробуйте снова.");
         }
     }
-
-    void addStepsByDay (int monthNumber, int dayNumber, int stepsValue) {
-
-    }
-
-
-
 }

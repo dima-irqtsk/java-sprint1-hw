@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner();
+        Scanner scanner = new Scanner(System.in);
         printMainMenu();
         int userInput = scanner.nextInt();
 
@@ -11,9 +11,9 @@ public class Main {
             if (userInput == 1) { // 1. Ввод количества шагов
                 addSteps();
             } else if (userInput == 2) { // 2. Статистика за месяц
-
+                System.out.println("Статистика"); // Заглушка
             } else if (userInput == 3) { // 3. Изменить цель
-
+                System.out.println("Новая цель"); // Заглушка
             } else  { // Пользователь ввел цифру, отличную от 0, 1, 2 или 3
                 System.out.println("Выберите действие снова");
             }
@@ -37,7 +37,8 @@ public class Main {
     public static void addSteps() {
 
         System.out.println("Введите порядковый номер месяца");
-        Scanner scanner = new Scanner();
+        Scanner scanner;
+        scanner = new Scanner(System.in);
         int monthNumber = scanner.nextInt() -  1; //Уменьшаем значение переменной на единицу, чтоб обращаться к нужному элементу массива
         while (monthNumber < 0 | monthNumber > 11) { //Проверяем на соответствие диапазону
             System.out.println("Введено неправильное значение.");
