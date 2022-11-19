@@ -16,9 +16,9 @@ public class Main {
             if (userInput == 1) { // 1. Ввод количества шагов
                 readMonthDaySteps();
             } else if (userInput == 2) { // 2. Статистика за месяц
-                System.out.println("Статистика"); // Заглушка
+                printStat();
             } else if (userInput == 3) { // 3. Изменить цель
-                System.out.println("Новая цель"); // Заглушка
+                changeTarget();
             } else  { // Пользователь ввел цифру, отличную от 0, 1, 2 или 3
                 System.out.println("Выберите действие снова");
             }
@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Работа завершена");
     }
 
-    public static void printMainMenu() {
+    public static void printMainMenu() { // метод печатает главное меню
         System.out.println("ГЛАВНОЕ МЕНЮ:");
         System.out.println("Выберите действие");
         System.out.println("1. Ввести количество шагов за день");
@@ -39,7 +39,7 @@ public class Main {
         System.out.println("0. Выйти из приложения");
     }
 
-    public static void readMonthDaySteps() {
+    public static void readMonthDaySteps() { // метод считывает номер месяца и дня и число шагов
 
         System.out.println("Введите порядковый номер месяца");
         Scanner scanner;
@@ -75,6 +75,29 @@ public class Main {
 
         stepTracker.addStepsByDay(monthNumber, dayNumber, stepsValue);
 
+    }
+
+    public static void printStat() { // метод принимает номер месяца и выдает статистику
+        int monthStat;
+        System.out.println("Введите номер месяца, за который вы хотите увидеть статистику");
+        Scanner scanner = new Scanner(System.in);
+        monthStat = scanner.nextInt() - 1;
+        StepTracker.calculateStatistics(stepTracker, monthStat);
+    }
+
+    public static void changeTarget() { // метод принимает новую цель
+        int newTarget;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Текущая цель — " + StepTracker.stepTarget + " шагов.");
+        System.out.println("Введите новое целевое количество шагов");
+        newTarget = scanner.nextInt();
+        while (newTarget < 0) {
+            System.out.println("Новая цель не может быть отрицательной");
+            System.out.println("Введите новое целевое количество шагов");
+            newTarget = scanner.nextInt();
+        }
+        StepTracker.changeStepTarget(newTarget);
+        System.out.println("Новая цель — " + StepTracker.stepTarget + " шагов.");
     }
 
 }
