@@ -1,39 +1,24 @@
-
 public class StepTracker {
 
-    int stepTarget = 10000;
-    static MonthData[] monthArray;
+    static MonthData[] monthToData;
 
     public StepTracker() {
-        monthArray = new MonthData[12];
-        for (int i = 0; i < monthArray.length; i++) {
-            monthArray[i] = new MonthData();
+        MonthData[] monthToData = new MonthData[12];
+        for (int i = 0; i < monthToData.length; i++) {
+            monthToData[i] = new MonthData();
         }
     }
 
-    public static class MonthData {
+    class MonthData {
         // Заполните класс самостоятельно
-        int[] dayData;
+        int[]  dayToData;
 
-        {
-            dayData = new int[30];
-            for (int j = 0; j < dayData.length; j++) {
-                dayData[j] = 0;
-            }
-        }
-
-        public void addStepsByDay(int monthNumber, int dayNumber, int stepsValue) {
-            monthArray[monthNumber].dayData[dayNumber] = stepsValue;
+        public MonthData() {
+            dayToData = new int[30];
         }
     }
 
-
-    void changeStepTarget (int newStepTarget) { //Метод для смены целевого количества шагов в день
-        if (newStepTarget >= 0) {
-            stepTarget = newStepTarget;
-        } else {
-            System.out.println("Цель не может быть отрицательной.");
-            System.out.println("Попробуйте снова.");
-        }
+     public static void addStepsByDay(int month, int day, int steps)  {
+        monthToData[month].dayToData[day] = steps;
     }
 }

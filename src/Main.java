@@ -1,7 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
+
+    static StepTracker stepTracker;
+
     public static void main(String[] args) {
+
+        stepTracker = new StepTracker();
 
         Scanner scanner = new Scanner(System.in);
         printMainMenu();
@@ -9,7 +14,7 @@ public class Main {
 
         while (userInput != 0) {
             if (userInput == 1) { // 1. Ввод количества шагов
-                addSteps();
+                readMonthDaySteps();
             } else if (userInput == 2) { // 2. Статистика за месяц
                 System.out.println("Статистика"); // Заглушка
             } else if (userInput == 3) { // 3. Изменить цель
@@ -34,7 +39,7 @@ public class Main {
         System.out.println("0. Выйти из приложения");
     }
 
-    public static void addSteps() {
+    public static void readMonthDaySteps() {
 
         System.out.println("Введите порядковый номер месяца");
         Scanner scanner;
@@ -68,7 +73,6 @@ public class Main {
             stepsValue = scanner.nextInt();
         }
 
-        StepTracker.MonthData stepTracker = new StepTracker.MonthData();
         stepTracker.addStepsByDay(monthNumber, dayNumber, stepsValue);
 
     }
