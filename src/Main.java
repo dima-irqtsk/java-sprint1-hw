@@ -20,7 +20,8 @@ public class Main {
             } else if (userInput == 3) { // 3. Изменить цель
                 changeTarget();
             } else  { // Пользователь ввел цифру, отличную от 0, 1, 2 или 3
-                System.out.println("Выберите действие снова");
+                System.out.println("Такой команды не существует.");
+                System.out.println("Выберите действие снова.");
             }
 
 
@@ -82,7 +83,7 @@ public class Main {
         System.out.println("Введите номер месяца, за который вы хотите увидеть статистику");
         Scanner scanner = new Scanner(System.in);
         monthStat = scanner.nextInt() - 1;
-        StepTracker.calculateStatistics(stepTracker, monthStat);
+        StepTracker.calculateStatistics(monthStat);
     }
 
     public static void changeTarget() { // метод принимает новую цель

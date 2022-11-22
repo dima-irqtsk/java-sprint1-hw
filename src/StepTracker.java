@@ -10,7 +10,7 @@ public class StepTracker {
         }
     }
 
-    class MonthData {
+    static class MonthData {
         // Заполните класс самостоятельно
         int[]  dayArray;
 
@@ -26,8 +26,7 @@ public class StepTracker {
         stepTarget = newStepTarget;
     }
 
-    public static void calculateStatistics (StepTracker stepTracker, int monthStat) {
-
+    public static void calculateStatistics (int monthStat) {
 
         // вывод числа шагов по дням
 
@@ -48,6 +47,16 @@ public class StepTracker {
         }
         System.out.println("Всего за этот месяц пройдено " + stepSum + " шагов.");
 
+        // вывод максимального числа шагов в день за выбранный месяц
+
+        int maxSteps = 0;
+        for (int i = 0; i < monthArray[monthStat].dayArray.length; i++){
+            if (maxSteps < monthArray[monthStat].dayArray[i]) {
+                maxSteps = monthArray[monthStat].dayArray[i];
+            }
+        }
+        System.out.println("Самое большое число шагов в день — " + maxSteps + ".");
+
 
         // вывод среднего количества шагов в день
 
@@ -64,6 +73,22 @@ public class StepTracker {
 
 
         // расчет и вывод лучшей серии
+
+        int goalReachedCounter = 0; // счетчик серии дней
+        int bestSeries = 0; // переменная для хранения длины лучшей серии дней
+        for (int i = 0; i < monthArray[monthStat].dayArray.length; i++) {
+            if (monthArray[monthStat].dayArray[i] >= stepTarget) {
+                goalReachedCounter = goalReachedCounter + 1;
+            } else {
+                if (bestSeries < goalReachedCounter) {
+                    bestSeries = goalReachedCounter;
+                    goalReachedCounter = 0;
+                } else {
+                    goalReachedCounter = 0;
+                }
+            }
+        }
+        System.out.println("Ваше упорство заслуживает уважения! Вы целых " + bestSeries + " дней превышали свою цель по числу шагов.");
 
 
     }
