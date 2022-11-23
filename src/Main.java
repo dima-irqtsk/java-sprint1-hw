@@ -14,11 +14,11 @@ public class Main {
 
         while (userInput != 0) {
             if (userInput == 1) { // 1. Ввод количества шагов
-                readMonthDaySteps();
+                readMonthDaySteps(scanner);
             } else if (userInput == 2) { // 2. Статистика за месяц
-                printStat();
+                printStat(scanner);
             } else if (userInput == 3) { // 3. Изменить цель
-                changeTarget();
+                changeTarget(scanner);
             } else  { // Пользователь ввел цифру, отличную от 0, 1, 2 или 3
                 System.out.println("Такой команды не существует.");
                 System.out.println("Выберите действие снова.");
@@ -40,11 +40,9 @@ public class Main {
         System.out.println("0. Выйти из приложения");
     }
 
-    public static void readMonthDaySteps() { // метод считывает номер месяца и дня и число шагов
+    public static void readMonthDaySteps(Scanner scanner) { // метод считывает номер месяца и дня и число шагов
 
         System.out.println("Введите порядковый номер месяца");
-        Scanner scanner;
-        scanner = new Scanner(System.in);
         int monthNumber = scanner.nextInt() -  1; //Уменьшаем значение переменной на единицу, чтоб обращаться к нужному элементу массива
         while (monthNumber < 0 | monthNumber > 11) { //Проверяем на соответствие диапазону
             System.out.println("Введено неправильное значение.");
@@ -78,18 +76,16 @@ public class Main {
 
     }
 
-    public static void printStat() { // метод принимает номер месяца и выдает статистику
+    public static void printStat(Scanner scanner) { // метод принимает номер месяца и выдает статистику
         int monthStat;
         System.out.println("Введите номер месяца, за который вы хотите увидеть статистику");
-        Scanner scanner = new Scanner(System.in);
         monthStat = scanner.nextInt() - 1;
-        StepTracker.calculateStatistics(monthStat);
+        stepTracker.calculateStatistics(monthStat);
     }
 
-    public static void changeTarget() { // метод принимает новую цель
+    public static void changeTarget(Scanner scanner) { // метод принимает новую цель
         int newTarget;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Текущая цель — " + StepTracker.stepTarget + " шагов.");
+        System.out.println("Текущая цель — " + stepTracker.stepTarget + " шагов.");
         System.out.println("Введите новое целевое количество шагов");
         newTarget = scanner.nextInt();
         while (newTarget < 0) {
@@ -97,8 +93,8 @@ public class Main {
             System.out.println("Введите новое целевое количество шагов");
             newTarget = scanner.nextInt();
         }
-        StepTracker.changeStepTarget(newTarget);
-        System.out.println("Новая цель — " + StepTracker.stepTarget + " шагов.");
+        stepTracker.changeStepTarget(newTarget);
+        System.out.println("Новая цель — " + stepTracker.stepTarget + " шагов.");
     }
 
 }
